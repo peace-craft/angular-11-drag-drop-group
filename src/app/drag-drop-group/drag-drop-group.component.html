@@ -3,13 +3,14 @@
 <div cdkDropList [cdkDropListData]="groups" (cdkDropListDropped)="dropGroup($event)">
   <div cdkDropListGroup class="example-container" *ngFor="let group of groups;let i = index" cdkDrag
     [cdkDragData]="group">
-    <div style="display: flex; align-items: center;">
+    <div style="display: flex; align-items: center; justify-content: space-evenly;">
       <h4 *ngIf="!group.editing" (click)="editGroup(i)" (keydown)="handleKeyDown($event, i)">
         {{group.title}}
       </h4>
       <input *ngIf="group.editing" [(ngModel)]="group.title" (blur)="saveGroup(i)" (keyup.enter)="saveGroup(i)">
-      <button style=" height: 25px; margin-left: 5px;" (click)="removeGroup(i)">Remove Group</button>
-      <button style="height: 25px; margin-left: 5px;" (click)="getItem(i)">Get Item</button>
+      <button (click)="removeGroup(group.id, i)">X Group</button>
+      <button (click)="getItem(group.id)">Get Item</button>
+      <button (click)="addItemInGroup(group.id)">Add Item {{group.id}}</button>
     </div>
     <div cdkDropList class="example-list" id={{group.id}} [cdkDropListData]="group.items"
       (cdkDropListDropped)="dropItem($event)" [cdkDropListConnectedTo]="getConnectedList()">

@@ -13,9 +13,7 @@ import {
 export class DragDropGroupComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {
-    /* TODO document why this method 'ngOnInit' is empty */
-  }
+  ngOnInit(): void {}
 
   groups = [
     {
@@ -90,22 +88,32 @@ export class DragDropGroupComponent implements OnInit {
   }
 
   addGroup() {
-    console.log(this.groups.length);
+    const maxId = this.groups.reduce(
+      (max, group) => (group.id > max ? group.id : max),
+      0
+    );
     this.groups.push({
-      id: this.groups.length + 1,
-      title: `Group ${this.groups.length + 1}`,
+      id: maxId + 1,
+      title: `Group ${maxId + 1}`,
       items: [],
       editing: false,
     });
   }
 
-  removeGroup(index: number) {
-    console.log('remove: ', index);
-    this.groups.splice(index, 1);
+  removeGroup(groupId: number, index: number) {
+    const group = this.groups.find((g) => g.id === groupId);
+    if (group) {
+      console.log('group: ', group);
+      this.groups.splice(index, 1);
+    }
+    console.log('groups: ', this.groups);
   }
 
   getItem(groupId: number) {
-    console.log('get item: ', JSON.stringify(this.groups[groupId], null, 2));
+    console.log(
+      'get item: ',
+      JSON.stringify(this.groups[groupId - 1], null, 2)
+    );
   }
 
   editGroup(index: number) {
@@ -127,6 +135,19 @@ export class DragDropGroupComponent implements OnInit {
     if (event.key === 'Enter' || event.key === ' ') {
       this.editGroup(index);
       event.preventDefault();
+    }
+  }
+
+  addItemInGroup(groupId: number) {
+    try {
+      const group = this.groups.find((group) => group.id === groupId);
+      if (group) {
+        group.items.push({
+          name: `Item ${group.items.length + 1} - Group ${groupId}`,
+        });
+      }
+    } catch (error) {
+      console.log(error, ' group is not exiting...');
     }
   }
 }
