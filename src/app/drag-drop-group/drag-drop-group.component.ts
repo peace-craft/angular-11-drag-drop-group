@@ -62,7 +62,7 @@ export class DragDropGroupComponent implements OnInit {
     },
   ];
 
-  dropItem(event: CdkDragDrop<string[]>) {
+  dropItem(event: CdkDragDrop<string[]>, groupId?: number) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -77,6 +77,8 @@ export class DragDropGroupComponent implements OnInit {
         event.currentIndex
       );
     }
+    const data = this.groups.find((g) => g.id === groupId);
+    console.log(data.items[event.currentIndex].name);
   }
 
   getConnectedList(): any[] {

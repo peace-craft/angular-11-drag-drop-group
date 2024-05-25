@@ -13,7 +13,7 @@
       <button (click)="addItemInGroup(group.id)">Add Item {{group.id}}</button>
     </div>
     <div cdkDropList class="example-list" id={{group.id}} [cdkDropListData]="group.items"
-      (cdkDropListDropped)="dropItem($event)" [cdkDropListConnectedTo]="getConnectedList()">
+      (cdkDropListDropped)="dropItem($event ,group.id)" [cdkDropListConnectedTo]="getConnectedList()">
       <div class="example-box" *ngFor="let item of group.items" cdkDrag [cdkDragData]="item">
         {{item.name}}
         <button (click)="removeItemInGroup(group.id, item.name)">X</button>
@@ -22,16 +22,3 @@
   </div>
 </div>
 <hr>
-
-
-
-<!-- <div *ngFor="let group of groups; let i = index" class="group-container">
-  <h3 *ngIf="!group.editing" (click)="editGroup(i)">Group {{group.name}}</h3>
-  <input *ngIf="group.editing" [(ngModel)]="group.name" (blur)="saveGroup(i)">
-  <button (click)="removeGroup(i)">Remove Group</button>
-  <div cdkDropList [cdkDropListData]="group.items" (cdkDropListDropped)="drop($event, i)" class="drag-drop-list">
-    <div *ngFor="let item of group.items" cdkDrag class="drag-drop-item">
-      {{item.name}}
-    </div>
-  </div>
-</div> -->
