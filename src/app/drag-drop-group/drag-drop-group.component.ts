@@ -57,7 +57,11 @@ export class DragDropGroupComponent implements OnInit {
     {
       id: 3,
       title: 'Group 3',
-      items: [],
+      items: [
+        {
+          name: 'Item 1 - Group 3',
+        },
+      ],
       editing: false,
     },
   ];
