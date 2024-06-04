@@ -7,6 +7,7 @@ import { DragDropAreaComponent } from './drag-drop-area/drag-drop-area.component
 import { DragDropGroupComponent } from './drag-drop-group/drag-drop-group.component';
 import { GroupComponent } from './group/group.component';
 import { DealsBiComponent } from './deals-bi/deals-bi.component';
+import { MergeGroupComponent } from './merge-group/merge-group.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { DealsBiComponent } from './deals-bi/deals-bi.component';
     DragDropGroupComponent,
     GroupComponent,
     DealsBiComponent,
+    MergeGroupComponent,
   ],
   imports: [BrowserModule, DragDropModule, FormsModule],
   providers: [],

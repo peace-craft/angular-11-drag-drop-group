@@ -1,0 +1,31 @@
+<p>merge-group works!</p>
+<!-- <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div class="example-box" *ngFor="let list of listFilter" cdkDrag>
+    <div>{{list.id}}</div>
+  </div>
+</div> -->
+
+<!-- fixing -->
+<div cdkDropListGroup>
+  <div class="example-container">
+    <h2>Movies</h2>
+
+    <div cdkDropList [cdkDropListSortPredicate]="sortPredicate" [cdkDropListData]="movies" class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of movies" cdkDrag>
+        Item: {{ item}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div cdkDropListGroup>
+  <div class="example-container">
+    <h2>Movies</h2>
+
+    <div cdkDropList [cdkDropListData]="movies" class="example-list" (cdkDropListDropped)="drop($event)"
+      cdkDropListSortingDisabled>
+      <div class="example-box" *ngFor="let item of movies" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+</div> -->
